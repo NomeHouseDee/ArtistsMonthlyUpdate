@@ -1,7 +1,7 @@
 {
   "id": "02",
-  "name": "Ari Lennox",
-  "email": "owordpodcast@gmail.com",
+  "name": "Artists 2",
+  "email": "email2@gmail.com",
   "primary_genre": "Neo Soul",
   "target_market_genre": "R&B",
   "search_keyword": [
@@ -20,7 +20,7 @@
     "growth": 0.25
   },
   "data_sources": {
-    "spotify_id": "1vaQ6v3pOFxAIrFoPrAcom",
-    "manual_csv": "Ari_Lennox.csv"
+    "spotify_id": "122733343rgr456t",
+    "manual_csv": "artists2.csv"
   }
 }
