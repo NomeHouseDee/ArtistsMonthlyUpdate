@@ -1,0 +1,26 @@
+{
+  "id": "02",
+  "name": "Ari Lennox",
+  "email": "owordpodcast@gmail.com",
+  "primary_genre": "Neo Soul",
+  "target_market_genre": "R&B",
+  "search_keyword": [
+    "Baddie"
+  ],
+  "sync_checklist": {
+    "one_stop_ownership": 2,
+    "writer_splits_captured": 2,
+    "isrc_iswc_embedded": 2,
+    "alt_versions_ready": 2,
+    "searchable_tags": 2,
+    "contact_sla_included": 2
+  },
+  "focus_area_message": "Admin task are looking good. YOu have all the needed elements time for the Sync push, marketing, and year plans.",
+  "thresholds": {
+    "growth": 0.25
+  },
+  "data_sources": {
+    "spotify_id": "1vaQ6v3pOFxAIrFoPrAcom",
+    "manual_csv": "Ari_Lennox.csv"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "01",
+  "name": "Danae Winters",
+  "email": "nomehousestudio@gmail.com",
+  "primary_genre": "Experimental Pop",
+  "target_market_genre": "Electronic",
+  "search_keyword": [
+    "Afrofuturism"
+  ],
+  "sync_checklist": {
+    "one_stop_ownership": 2,
+    "writer_splits_captured": 1,
+    "isrc_iswc_embedded": 1,
+    "alt_versions_ready": 1,
+    "searchable_tags": 1,
+    "contact_sla_included": 2
+  },
+  "focus_area_message": "Add your weekly focus message here.",
+  "focus_area_link": "",
+  "thresholds": {
+    "growth": 0.25
+  },
+  "data_sources": {
+    "spotify_id": "PASTE_ID_HERE",
+    "manual_csv": "artist_01.csv"
+  }
+}

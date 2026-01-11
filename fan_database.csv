@@ -1,0 +1,4 @@
+email,name,persona_type,rfm_score,last_active_date,lifetime_value,favorite_content,trigger_motivation,location_city
+fan1@gmail.com,Sarah,The Collector,95,2025-10-12,$150.00,Vinyl/Physical,Scarcity,Austin
+fan2@gmail.com,Mike,The Evangelist,80,2025-10-10,$25.00,BTS Video,Connection,London
+fan3@gmail.com,Jen,The Observer,20,2024-01-01,$0.00,Playlists,Mood,NYC
