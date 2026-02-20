@@ -14,7 +14,6 @@ import json
 import time
 import random
 import io
-
 # Import your trends code (Ensure trends_engine.py is in the same folder)
 from trends_engine import get_artist_trends
 load_dotenv()
@@ -23,24 +22,14 @@ load_dotenv()
 # --- 1. DATA VISUALIZATION ENGINE ---
 def generate_charts(profile):
     artist_name = profile['name']
-    # 1. Get the filename from your JSON data_sources
     csv_file = profile.get('data_sources', {}).get('manual_csv')
 
     plt.figure(figsize=(8, 4))
     sns.set_style("darkgrid")
-
-    # 2. Check if the CSV file actually exists in your folder
     if csv_file and os.path.exists(csv_file):
         try:
             df_stats = pd.read_csv(csv_file)
-
-            # THE SAFETY FIX: Standardize column names
-            # This makes "City " (with a space) or "city" (lowercase) all match your code
             df_stats.columns = [str(col).strip().title() for col in df_stats.columns]
-
-            # Use the cleaned names
-            # Spotify "Listeners" might be "Listeners (Last 28 Days)",
-            # so we look for any column containing the word "Listeners"
             city_col = 'City'
             listener_col = [col for col in df_stats.columns if 'Listener' in col][0]
 
@@ -49,13 +38,10 @@ def generate_charts(profile):
             interactions = df_sorted[listener_col].tolist()
 
         except Exception as e:
-
             print(f"❌ Error reading CSV for {artist_name}: {e}")
-            # Fallback to an "Empty State" if the CSV is corrupted
             cities = ["Data Pending"]
             interactions = [0]
     else:
-        # 3. Dynamic Fallback: If no file, show a "Pending" message instead of random cities
         print(f"⚠️ No CSV found for {artist_name}. Showing pending state.")
         cities = ["Upload Data", "To See", "Top", "Fan", "Cities"]
         interactions = [0, 0, 0, 0, 0]
@@ -188,8 +174,6 @@ def send_complete_report(profile, chart_path, cloud_path, trending_keywords):
     except Exception as e:
         print(f"Error for {profile['name']}: {e}")
 
-
-# --- 5. THE MASTER LOOP ---
 # --- 5. THE MASTER LOOP ---
 if __name__ == "__main__":
     profiles_dir = "profiles/"
