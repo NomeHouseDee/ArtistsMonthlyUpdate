@@ -7,26 +7,18 @@ import os
 
 
 def get_artist_trends(artist_json_path):
-    # 1. Load Artist Profile
     with open(artist_json_path, 'r') as f:
         profile = json.load(f)
 
     artist_name = profile['name']
-
-    # 2. Extract Keywords
     keywords = profile.get('search_keyword', [profile.get('primary_genre', 'Music')])
     if isinstance(keywords, str):
         keywords = [keywords]
-
-    # --- THE FIX: NEW STRATEGY ---
-    # We pick the very first keyword as our "Primary Search"
-    # This reduces Google hits from 5 per artist down to 1.
     main_keyword = keywords[0]
     all_query_words = []
 
     print(f"🔍 Fetching LIVE trends for {artist_name} using: '{main_keyword}'...")
 
-    # 3. Connect to Google Trends
     pytrends = TrendReq(
         hl='en-US',
         tz=0,
@@ -39,16 +31,11 @@ def get_artist_trends(artist_json_path):
         }
     )
     try:
-        # Inside your try block in get_artist_trends:
         pytrends.build_payload([main_keyword], cat=35, timeframe='now 7-d')  # cat=35 is the "Music" category
         related_queries = pytrends.related_queries()
-
-        # TARGET "RISING" INSTEAD OF "TOP"
         if main_keyword in related_queries and related_queries[main_keyword]['rising'] is not None:
             rising_df = related_queries[main_keyword]['rising']
             all_query_words = rising_df['query'].tolist()
-
-        # 5. Create the word string for the cloud.
         if all_query_words:
             word_string = " ".join(all_query_words)
         else:
@@ -58,8 +45,6 @@ def get_artist_trends(artist_json_path):
     except Exception as e:
         print(f"⚠️ Google Trends Error: {e}. Using fallback words.")
         word_string = " ".join(keywords) + " Trending Music Production"
-
-    # 6. Generate the Word Cloud.
     print(f"☁️ Generating Word Cloud for {artist_name}...")
     wordcloud = WordCloud(
         width=800,
@@ -67,8 +52,6 @@ def get_artist_trends(artist_json_path):
         background_color='white',
         colormap='magma'
     ).generate(word_string)
-
-    # Save the file
     cloud_path = f"{artist_name}_wordcloud.png"
     wordcloud.to_file(cloud_path)
 
@@ -79,8 +62,6 @@ def get_artist_trends(artist_json_path):
 
 
 if __name__ == "__main__":
-    # Test it with your JSON profile
-    # Ensure this path is correct for your local setup
     test_path = 'profiles/artist_01.json'
     if os.path.exists(test_path):
         path = get_artist_trends(test_path)
