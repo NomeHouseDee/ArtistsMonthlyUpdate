@@ -1,8 +1,7 @@
 import pandas as pd
 import json
 import os
-
-from typing import Any # Add this at the very top of your file
+from typing import Any
 
 
 def update_json_from_csv(csv_path, profiles_dir):
@@ -42,8 +41,6 @@ def update_json_from_csv(csv_path, profiles_dir):
         profile_data['email'] = row['Email']
         profile_data['primary_genre'] = row['Primary Genre']
         profile_data['target_market_genre'] = row['Target Market']
-
-        # Keyword logic (Splitting string into list)
         raw_input = str(row['Search Keyword'])
         artist_keywords = [k.strip() for k in raw_input.split(',') if k.strip()]
         profile_data['search_keyword'] = artist_keywords[:5]
